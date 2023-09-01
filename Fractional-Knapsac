@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct item
+{
+    string name;
+    double weight, price, uniteprice;
+};
+void SelectionSort(item arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        int maxIndex = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[j].uniteprice > arr[maxIndex].uniteprice)
+                maxIndex = j;
+            if (maxIndex != i)
+                swap(arr[i], arr[maxIndex]);
+        }
+    }
+}
+
+int main()
+{
+    int n;
+    cout << "Enter the number of Item : ";
+    cin >> n;
+    item arr[n];
+    double capacity;
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Give the name, weight, price of the item number: " <<i+1<< ". ";
+        cin >> arr[i].name >> arr[i].weight >> arr[i].price;
+        arr[i].uniteprice = arr[i].price / arr[i].weight;
+    }
+    SelectionSort(arr, n);
+    cout << "Enter the capacity of Knapsac: ";
+    cin >> capacity;
+    double profit = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i].weight <= capacity)
+        {
+            profit += arr[i].price;
+            capacity -= arr[i].weight;
+        }
+        else
+        {
+            profit += arr[i].uniteprice * arr[i].weight;
+            break;
+        }
+    }
+    cout << "The maximum profit:" << profit << endl;
+    return 0;
+}
