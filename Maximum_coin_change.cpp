@@ -36,7 +36,7 @@ int main()
         }
       
     }
-     cout<<endl<<"THE MINIMUM COIN CHANGE : "<<table[co][tk]<<endl;
+     cout<<endl<<"THE MAXIMUM COIN CHANGE : "<<table[co][tk]<<endl;
     for(int i=0; i<=co; i++)
     {
         for(int j=0; j<=tk; j++)
